@@ -3,9 +3,8 @@ uvicorn
 sqlalchemy
 pymysql
 python-jose[cryptography]
-passlib[bcrypt]
+bcrypt
 python-multipart
 python-dotenv
-cors
 certifi
 email-validator

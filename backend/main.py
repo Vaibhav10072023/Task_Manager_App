@@ -14,8 +14,8 @@ origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=["http://localhost:5173", "https://taskmanagerapp-production-5054.up.railway.app", "https://heroic-smile-production-9119.up.railway.app"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )

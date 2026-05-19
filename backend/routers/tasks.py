@@ -7,7 +7,7 @@ from database import get_db
 router = APIRouter(prefix="/api", tags=["tasks"])
 
 @router.post("/projects/{project_id}/tasks", response_model=schemas.TaskResponse)
-def create_task(project_id: int, task: schemas.TaskCreate, db: Session = Depends(get_db), current_user: models.User = Depends(auth.get_current_admin)):
+def create_task(project_id: int, task: schemas.TaskCreate, db: Session = Depends(get_db), current_user: models.User = Depends(auth.get_current_user)):
     project = db.query(models.Project).filter(models.Project.id == project_id).first()
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
@@ -78,7 +78,7 @@ def update_task(task_id: int, task_update: schemas.TaskUpdate, db: Session = Dep
     return task
 
 @router.delete("/tasks/{task_id}")
-def delete_task(task_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(auth.get_current_admin)):
+def delete_task(task_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(auth.get_current_user)):
     task = db.query(models.Task).filter(models.Task.id == task_id).first()
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
