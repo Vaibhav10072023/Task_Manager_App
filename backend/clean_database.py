@@ -15,6 +15,10 @@ def clean_and_recreate_db():
     if not DATABASE_URL:
         print("Error: DATABASE_URL not found in environment.")
         return
+
+    # Automatically convert standard mysql:// to mysql+pymysql:// for PyMySQL support
+    if DATABASE_URL.startswith("mysql://"):
+        DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
         
     print(f"Connecting to database to clear tables...")
     

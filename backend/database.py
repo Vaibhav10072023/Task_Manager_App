@@ -9,6 +9,10 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./taskmanager.db")
 
+# Automatically convert standard mysql:// to mysql+pymysql:// for PyMySQL support
+if DATABASE_URL.startswith("mysql://"):
+    DATABASE_URL = DATABASE_URL.replace("mysql://", "mysql+pymysql://", 1)
+
 connect_args = {}
 is_local = "localhost" in DATABASE_URL or "127.0.0.1" in DATABASE_URL
 is_railway = "railway.internal" in DATABASE_URL or "rlwy.net" in DATABASE_URL or os.getenv("RAILWAY_ENVIRONMENT")
