@@ -1,4 +1,4 @@
-# Collaborative Team Task Manager
+# Team Task Manager App
 
 A premium, full-stack collaborative project and task management application. Built with a sleek Glassmorphism design system in **React (Vite)** on the frontend and a robust **FastAPI (Python)** REST API backed by **SQLAlchemy** and **TiDB Cloud MySQL** on the backend.
 
