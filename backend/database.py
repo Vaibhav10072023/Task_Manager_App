@@ -18,7 +18,7 @@ is_local = "localhost" in DATABASE_URL or "127.0.0.1" in DATABASE_URL
 is_railway = "railway.internal" in DATABASE_URL or "rlwy.net" in DATABASE_URL or os.getenv("RAILWAY_ENVIRONMENT")
 if DATABASE_URL and DATABASE_URL.startswith("mysql") and not is_local:
     if is_railway:
-        connect_args = {"ssl_disabled": True}
+        connect_args = {}
     else:
         connect_args = {"ssl": {"ca": certifi.where()}}
 
@@ -33,7 +33,7 @@ def ensure_database_exists():
     if is_local:
         ssl_args = {}
     elif is_railway:
-        ssl_args = {"ssl_disabled": True}
+        ssl_args = {}
     else:
         ssl_args = {"ssl": {"ca": certifi.where()}}
     try:
